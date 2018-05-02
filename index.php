@@ -73,7 +73,7 @@ require_once 'funciones/base_datos.php';
                 $i = 0;
                 foreach ($array as $concierto) {
                     $i++;
-                    if ($i == count($array)) {
+                    if ($i == count($array) && $i!=1) {
                         echo "$concierto</table></div>";
                     } else if ($i == 1) {
                         echo "<div><table><tr><th>Nombre concierto</th><th>Local</th><th>Muscio/s</th><th>Direccion</th><th>Fecha</th><th>Genero</th></tr>$concierto";
