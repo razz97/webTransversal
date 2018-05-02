@@ -12,7 +12,7 @@ if (isset($_SESSION["user"]) && ($_SESSION["tipo"] == 3 || $_SESSION["tipo"] == 
 			<script src="javascript/usuarios.js" type="text/javascript"></script>
 			<title>Stucomusic-Local</title>
 		</head>
-		<body>
+		<body id="bodyLocal">
 			<?php
 			$userData = mysqli_fetch_assoc(select_usuario($_SESSION["user"], "locales"));
 			if (isset($_SESSION["info"])) {

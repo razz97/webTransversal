@@ -10,9 +10,9 @@ if (isset($_SESSION["user"]) && ($_SESSION["tipo"] == 4 || $_SESSION["tipo"] == 
 			<link href="css/usuarios.css" rel="stylesheet" type="text/css"/>
 			<script src="librerias/jquery-3.2.1.min.js" type="text/javascript"></script>
 			<script src="javascript/usuarios.js" type="text/javascript"></script>
-			<title>Stucomusic-Fan</title>
+			<title>Stucomusic-Musico</title>
 		</head>
-		<body>
+		<body id="bodyMusico">
 			<?php
 			$userData = mysqli_fetch_assoc(select_usuario($_SESSION["user"], "musico"));
 			if (isset($_SESSION["info"])) {

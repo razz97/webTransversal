@@ -12,6 +12,12 @@ body {
     font-family: superfuente;
     text-align: center;
 }
+#bodyLocal {
+    background-image: url("../img/fondos/local.png");
+}
+#bodyMusico {
+    background-image: url("../img/fondos/musico.png");
+}
 @font-face {
     font-family: superfuente;
     src: url(../font/monof55.woff);
