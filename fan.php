@@ -85,7 +85,7 @@ if (isset($_SESSION["user"]) && ($_SESSION["tipo"] == 2 || $_SESSION["tipo"] == 
 				}
 				if ($array) {
 					if (editar_usuario($array, $_SESSION["user"], "fan")) {
-						$_SESSION["info"] = "Cambios modificados correctamente";
+						$_SESSION["info"] = "<p class='info'>Cambios modificados correctamente</p>";
 						if (isset($_POST["user"])) {
 							$_SESSION["user"] = $_POST["user"];
 						}

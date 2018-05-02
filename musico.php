@@ -23,10 +23,50 @@ if (isset($_SESSION["user"]) && ($_SESSION["tipo"] == 4 || $_SESSION["tipo"] == 
 				$_SESSION["info"] = "Has cerrado sesión, hasta pronto!";
 				header("location: index.php");
 			}
-			if (isset($_POST["aceptar"])) {
-				inscribirse($_POST["idconcierto"], $userData["IDUSUARIO"]);
-				echo "<p>Has enviado una peticion al local</p>";
-			}
+			?>
+			<div id="backgroundHeader"></div>
+			<img src="img/logos/stucomusic.png" alt="" id="imgStucomusic" class="header"/>
+			<h1 id="titulo" class="header">Stucomusic - Home</h1>
+			<form action="musico.php" method="POST" ><input type="submit" name="logOut" id="logOut" class="header" value="Cerrar sessión"></form>
+			<div id="backgroundSide"></div>
+			<h2 id="titleDatos"class="leftSide">Tus datos</h2>
+			<table id="tableDatos" class="leftSide" style="font-size:1.1vw;">
+				<tr><td>Nombre de usuario: </td><td><?php echo $userData["NOMBRE_USUARIO"] ?></td></tr>
+				<tr><td>Nombre artistico:</td><td><?php echo $userData["NOMBRE_ARTISTICO"] ?></td></tr> 
+				<tr><td>Numero componentes: </td><td><?php echo $userData["NUMERO_COMPONENTES"] ?></td></tr> 
+				<tr><td>Genero: </td><td><?php echo $userData["GENERO"] ?></td></tr> 
+				<tr><td>Nombre: </td><td><?php echo $userData["NOMBRE"] ?></td></tr> 
+				<tr><td>Apellidos: </td><td><?php echo $userData["APELLIDO"] ?></td></tr>
+				<tr><td>Email: </td><td><?php echo $userData["EMAIL"] ?></td></tr> 
+				<tr><td>Telefono: </td><td><?php echo $userData["TELEFONO"] ?></td></tr> 
+				<tr><td>Ciudad </td><td><?php echo $userData["CIUDAD"] ?></td></tr> 
+				<tr><td>Imagen</td><td></td></tr> 
+			</table>
+			<button id="showOptionsEdit" class="menuButton">Editar tus datos</button>
+			<button id="showRequest" class="menuButton">Ver tus peticiones</button>
+			<button id="showRegister" class="menuButton">Inscribirse a un concierto</button>
+			<div id="backgroundMain"></div>
+			<div id="optionsEdit" class="functionality">
+				<h2 id="titleOptionEdit" class="optionEdit">Que datos quieres editar?</h2>
+				<form action="musico.php" method="POST" id="formOptionsEdit" >
+					<table id="tableOptionEdit" class="optionEdit">
+						<tr><td><input type="checkbox" name="usr">Nombre usuario</td>
+							<td><input type="checkbox" name="pass"> Contraseña</td>
+							<td><input type="checkbox" name="name"> Nombre</td></tr>
+						<tr><td><input type="checkbox" name="ape"> Apellidos</td>
+							<td><input type="checkbox" name="mail"> Email</td>
+							<td><input type="checkbox" name="tel"> Teléfono</td></tr>
+						<tr><td><input type="checkbox" name="img"> Imagen</td>
+							<td><input type="checkbox" name="ciu"> Ciudad</td>
+							<td><input type="checkbox" name="art"> Nombre artístico</td></tr>
+						<tr><td><input type="checkbox" name="num"> Número componentes</td>
+							<td><input type="checkbox" name="web"> Página Web</td>
+							<td><input type="checkbox" name="gen"> Género</td></tr>
+					</table>
+					<input type="submit" name="optionSubmitEdit" id="optionSubmitEdit" value="Seleccionar" style="top: 50vh">
+				</form>
+			</div>
+			<?php
 			if (isset($_POST["optionSubmitEdit"]) && !isset($_POST["backOption"])) {
 				echo "<input id='infoForm'style='visibility:hidden' value='optionSelected' >";
 				echo "<form action='musico.php' method='POST' id='formEdit' class='functionality'>";
@@ -75,62 +115,19 @@ if (isset($_SESSION["user"]) && ($_SESSION["tipo"] == 4 || $_SESSION["tipo"] == 
 				}
 				if ($array) {
 					if (editar_usuario($array, $_SESSION["user"], "musico")) {
-						$_SESSION["info"] = "Cambios modificados correctamente";
+						$_SESSION["info"] = "<p class='info'>Cambios modificados correctamente</p>";
 						if (isset($_POST["user"])) {
 							$_SESSION["user"] = $_POST["user"];
 						}
 						header("location: musico.php");
 					} else {
-						echo "ha habido un error";
+						echo "<p class='info'>Ha habido un error, no se ha modificado ningun dato</p>";
 					}
 				} else {
-					echo "No se ha modificado ningun dato";
+					echo "<p class='info'>Ha habido un error, no se ha modificado ningun dato</p>";
 				}
 			}
-			
 			?>
-			<div id="backgroundHeader"></div>
-			<img src="img/logos/stucomusic.png" alt="" id="imgStucomusic" class="header"/>
-			<h1 id="titulo" class="header">Stucomusic - Home</h1>
-			<form action="musico.php" method="POST" ><input type="submit" name="logOut" id="logOut" class="header" value="Cerrar sessión"></form>
-			<div id="backgroundSide"></div>
-			<h2 id="titleDatos"class="leftSide">Tus datos</h2>
-			<table id="tableDatos" class="leftSide" style="font-size:1.1vw;">
-				<tr><td>Nombre de usuario: </td><td><?php echo $userData["NOMBRE_USUARIO"] ?></td></tr>
-				<tr><td>Nombre artistico:</td><td><?php echo $userData["NOMBRE_ARTISTICO"] ?></td></tr> 
-				<tr><td>Numero componentes: </td><td><?php echo $userData["NUMERO_COMPONENTES"] ?></td></tr> 
-				<tr><td>Genero: </td><td><?php echo $userData["GENERO"] ?></td></tr> 
-				<tr><td>Nombre: </td><td><?php echo $userData["NOMBRE"] ?></td></tr> 
-				<tr><td>Apellidos: </td><td><?php echo $userData["APELLIDO"] ?></td></tr>
-				<tr><td>Email: </td><td><?php echo $userData["EMAIL"] ?></td></tr> 
-				<tr><td>Telefono: </td><td><?php echo $userData["TELEFONO"] ?></td></tr> 
-				<tr><td>Ciudad </td><td><?php echo $userData["CIUDAD"] ?></td></tr> 
-				<tr><td>Imagen</td><td></td></tr> 
-			</table>
-			<button id="showOptionsEdit" class="menuButton">Editar tus datos</button>
-			<button id="showRequest" class="menuButton">Ver tus peticiones</button>
-			<button id="showRegister" class="menuButton">Inscribirse a un concierto</button>
-			<div id="backgroundMain"></div>
-			<div id="optionsEdit" class="functionality">
-				<h2 id="titleOptionEdit" class="optionEdit">Que datos quieres editar?</h2>
-				<form action="musico.php" method="POST" id="formOptionsEdit" >
-					<table id="tableOptionEdit" class="optionEdit">
-						<tr><td><input type="checkbox" name="usr">Nombre usuario</td>
-							<td><input type="checkbox" name="pass"> Contraseña</td>
-							<td><input type="checkbox" name="name"> Nombre</td></tr>
-						<tr><td><input type="checkbox" name="ape"> Apellidos</td>
-							<td><input type="checkbox" name="mail"> Email</td>
-							<td><input type="checkbox" name="tel"> Teléfono</td></tr>
-						<tr><td><input type="checkbox" name="img"> Imagen</td>
-							<td><input type="checkbox" name="ciu"> Ciudad</td>
-							<td><input type="checkbox" name="art"> Nombre artístico</td></tr>
-						<tr><td><input type="checkbox" name="num"> Número componentes</td>
-							<td><input type="checkbox" name="web"> Página Web</td>
-							<td><input type="checkbox" name="gen"> Género</td></tr>
-					</table>
-					<input type="submit" name="optionSubmitEdit" id="optionSubmitEdit" value="Seleccionar" style="top: 50vh">
-				</form>
-			</div>
 			<div id="request" class="functionality">
 				<h2>Tus peticiones a conciertos</h2>
 				<?php
@@ -145,6 +142,12 @@ if (isset($_SESSION["user"]) && ($_SESSION["tipo"] == 4 || $_SESSION["tipo"] == 
 					<?php echo seleccionar_conciertos_musico($userData["IDUSUARIO"]); ?>
 				</table>
 			</div>
+			<?php
+			if (isset($_POST["aceptar"])) {
+				inscribirse($_POST["idconcierto"], $userData["IDUSUARIO"]);
+				echo "<p class='info'>Has enviado una peticion al local</p>";
+			}
+			?>
 			<div id="backgroundAds"></div>
 			<img src="img/anuncios/albondigas.gif" alt="" id="upperAd"/>
 			<img src="img/anuncios/chicken.gif" alt="" id="lowerAd"/>
