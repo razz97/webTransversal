@@ -38,7 +38,7 @@ function array_editar_usuario($data) {
 	if (isset($data["user"])) {
 		$ok = comp_nombre_usuarios($data["user"]);
 		if (!$ok) {
-			echo "Este nombre de usuario ya existe";
+			$error = "Este nombre de usuario ya existe";
 			$update = false;
 		} else {
 			$datos = "nombre_usuario='" . $data["user"] . "'";
