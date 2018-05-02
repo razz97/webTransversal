@@ -14,6 +14,7 @@ if (isset($_SESSION["user"]) && ($_SESSION["tipo"] == 3 || $_SESSION["tipo"] == 
 		</head>
 		<body>
 			<?php
+			$userData = mysqli_fetch_assoc(select_usuario($_SESSION["user"], "locales"));
 			if (isset($_SESSION["info"])) {
 				echo "<p id='info'>" . $_SESSION["info"] . "</p>";
 				$_SESSION["info"] = null;
@@ -66,7 +67,7 @@ if (isset($_SESSION["user"]) && ($_SESSION["tipo"] == 3 || $_SESSION["tipo"] == 
 				$date = explode("T", $_POST["fecha"]);
 				$genre = $_POST["genero"];
 				$cashMoney = $_POST["propuesta"];
-				$result = alta_concierto($date[0] . " " . $date[1] . ":00", $genre, $cashMoney, $name, $idlocal);
+				$result = alta_concierto($date[0] . " " . $date[1] . ":00", $genre, $cashMoney, $name, $userData["IDUSUARIO"]);
 				if ($result) {
 					echo "<div>Concierto creado con éxito</div>";
 				}
@@ -74,7 +75,6 @@ if (isset($_SESSION["user"]) && ($_SESSION["tipo"] == 3 || $_SESSION["tipo"] == 
 				$result = eliminar_concierto($_POST["selectDeleteConcert"]);
 				echo "<div>Concierto eliminado con éxito</div>";
 			}
-			$userData = mysqli_fetch_assoc(select_usuario($_SESSION["user"], "locales"));
 			?>
 			<div id="backgroundHeader"></div>
 			<img src="img/logos/stucomusic.png" alt="" id="imgStucomusic" class="header"/>
@@ -119,7 +119,7 @@ if (isset($_SESSION["user"]) && ($_SESSION["tipo"] == 3 || $_SESSION["tipo"] == 
 				<form action="local.php" method="POST">
 					<table>
 						<tr><td>Nombre concierto: </td><td><input type="text" required name="nombre"/></td></tr>
-						<tr><td>Fecha del concierto: </td><td><input type="datetime-local" required name="fecha"/></td></tr>
+						<tr><td>Fecha del concierto: (cuidado con formato)</td><td><input type="datetime-local" placeholder="yyyy/mm/ddThh:mm" required name="fecha"/></td></tr>
 						<tr><td>Género: </td><td><select name="genero" required>
 									<option disabled selected >Selecciona un genero</option>
 									<?php
