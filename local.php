@@ -16,7 +16,7 @@ if (isset($_SESSION["user"]) && ($_SESSION["tipo"] == 3 || $_SESSION["tipo"] == 
 			<?php
 			$userData = mysqli_fetch_assoc(select_usuario($_SESSION["user"], "locales"));
 			if (isset($_SESSION["info"])) {
-				echo "<p id='info'>" . $_SESSION["info"] . "</p>";
+				echo "<p class='info'>" . $_SESSION["info"] . "</p>";
 				$_SESSION["info"] = null;
 			}
 			if (isset($_POST["logOut"])) {
