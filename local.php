@@ -154,6 +154,7 @@ if (isset($_SESSION["user"]) && ($_SESSION["tipo"] == 3 || $_SESSION["tipo"] == 
 			}
 			?>
 			<div id="infoConcert" class="functionality">
+				<h2>Conciertos asignados</h2>
 				<?php
 				$asignados = seleccionar_conciertos_local($userData["IDUSUARIO"]);
 				echo "<table class='tablesInfoConcert'><tr><th>Nombre concierto</th><th>Musico/s</th><th>Genero</th><th>Fecha y hora</th></tr>$asignados</table>";
