@@ -6,8 +6,8 @@ function inicio() {
 	$("#provincia").on('change', seleccionar);
 	$("#showOptionsEdit").click(function () { 
 		show($("#optionsEdit"), $("#showOptionsEdit")); 
-		$("#formEdit").fadeIn(1000);
-		$("#backOption").fadeIn(1000);
+		$("#formEdit").fadeIn(500);
+		$("#backOption").fadeIn(500);
 	});
 	$("#showCreateConcert").click(function () { show($("#createConcert"), $("#showCreateConcert"));});
 	$("#showDeleteConcert").click(function () { show($("#deleteConcert"), $("#showDeleteConcert"));});
@@ -44,8 +44,8 @@ function hideEditOptions() {
 	$("#optionSubmitEdit").css({"display": "none"});
 }
 function show(nodeToShow, buttonUsed) {
-	$(".functionality").fadeOut(1000);
-	nodeToShow.fadeIn(1000);
+	$(".functionality").fadeOut(500);
+	nodeToShow.fadeIn(500);
 	$(".menuButton").css({"backgroundColor": "rgb(150, 15, 15)"});
 	buttonUsed.css({"backgroundColor": "rgba(255,255,255,0.6)"});
 	$(".menuButton").hover(hoverMenuIn, hoverMenuOut);
