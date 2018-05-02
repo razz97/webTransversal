@@ -33,6 +33,7 @@ function formulario_editar_usuario() {
 //este se utiliza en la funcion anterior para crear la query necesaria.
 function array_editar_usuario($data) {
 	$update = true;
+	$error = "";
 	$array = array();
 	if (isset($data["user"])) {
 		$ok = comp_nombre_usuarios($data["user"]);
@@ -50,11 +51,11 @@ function array_editar_usuario($data) {
 				$datos = "contrasena='" . password_hash($data["password1"], PASSWORD_BCRYPT) . "'";
 				$array[] = $datos;
 			} else {
-				echo "Contrasena antigua incorrecta.";
+				$error = "Contrasena antigua incorrecta.";
 				$update = false;
 			}
 		} else {
-			echo "Las contrasenas nuevas no son iguales.";
+			$error = "Las contrasenas nuevas no son iguales.";
 			$update = false;
 		}
 	}
@@ -67,7 +68,7 @@ function array_editar_usuario($data) {
 			$datos = "email='" . $data["mail"] . "'";
 			$array[] = $datos;
 		} else {
-			echo "Ya existe una cuenta con este email.";
+			$error = "Ya existe una cuenta con este email.";
 			$update = false;
 		}
 	}
@@ -87,7 +88,7 @@ function array_editar_usuario($data) {
 	if ($update) {
 		return $array;
 	} else
-		return false;
+		return $error;
 }
 
 //Funcion general para comprobar registro de cualquier usuario

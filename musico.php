@@ -93,27 +93,27 @@ if (isset($_SESSION["user"]) && ($_SESSION["tipo"] == 4 || $_SESSION["tipo"] == 
 				. "<input type='submit' name='backOption'  value='Atras'></form>";
 			} if (isset($_POST["edit"])) {
 				$array = array_editar_usuario($_POST);
-				if (isset($_POST["surname"]) && $array) {
+				if (isset($_POST["surname"]) && is_array($array)) {
 					$datos = "apellido='" . $_POST["surname"] . "'";
 					array_push($array, $datos);
 				}
-				if (isset($_POST["art"]) && $array) {
+				if (isset($_POST["art"]) && is_array($array)) {
 					$datos = "nombre_artistico='" . $_POST["art"] . "'";
 					array_push($array, $datos);
 				}
-				if (isset($_POST["num"]) && $array) {
+				if (isset($_POST["num"]) && is_array($array)) {
 					$datos = "numero_componentes='" . $_POST["num"] . "'";
 					array_push($array, $datos);
 				}
-				if (isset($_POST["gen"]) && $array) {
+				if (isset($_POST["gen"]) && is_array($array)) {
 					$datos = "idgenero=" . $_POST["gen"];
 					array_push($array, $datos);
 				}
-				if (isset($_POST["web"]) && $array) {
+				if (isset($_POST["web"]) && is_array($array)) {
 					$datos = "pagina_web='" . $_POST["web"] . "'";
 					array_push($array, $datos);
 				}
-				if ($array) {
+				if (is_array($array)) {
 					if (editar_usuario($array, $_SESSION["user"], "musico")) {
 						$_SESSION["info"] = "<p class='info'>Cambios modificados correctamente</p>";
 						if (isset($_POST["user"])) {
@@ -124,7 +124,7 @@ if (isset($_SESSION["user"]) && ($_SESSION["tipo"] == 4 || $_SESSION["tipo"] == 
 						echo "<p class='info'>Ha habido un error, no se ha modificado ningun dato</p>";
 					}
 				} else {
-					echo "<p class='info'>Ha habido un error, no se ha modificado ningun dato</p>";
+					echo "<p class='info'>$array</p>";
 				}
 			}
 			?>

@@ -75,15 +75,15 @@ if (isset($_SESSION["user"]) && ($_SESSION["tipo"] == 2 || $_SESSION["tipo"] == 
 				echo "<input type='submit' name='edit' value='Editar'></form><form action='fan.php' method='POST' id='backOption' class='functionality'><input type='submit' name='backOption'  value='Atras'></form>";
 			} if (isset($_POST["edit"])) {
 				$array = array_editar_usuario($_POST);
-				if (isset($_POST["surname"]) && $array) {
+				if (isset($_POST["surname"]) && is_array($array)) {
 					$datos = "apellido='" . $_POST["surname"] . "'";
 					$array[] = $datos;
 				}
-				if (isset($_POST["add"]) && $array) {
+				if (isset($_POST["add"]) && is_array($array)) {
 					$datos = "direccion='" . $_POST["add"] . "'";
 					$array[] = $datos;
 				}
-				if ($array) {
+				if (is_array($array)) {
 					if (editar_usuario($array, $_SESSION["user"], "fan")) {
 						$_SESSION["info"] = "<p class='info'>Cambios modificados correctamente</p>";
 						if (isset($_POST["user"])) {
@@ -94,7 +94,7 @@ if (isset($_SESSION["user"]) && ($_SESSION["tipo"] == 2 || $_SESSION["tipo"] == 
 						echo "<p class='info'>Ha habido un error, no se ha modificado ningun dato</p>";
 					}
 				} else {
-					echo "<p class='info'>Ha habido un error, no se ha modificado ningun dato</p>";
+					echo "<p class='info'>$array</p>";
 				}
 			}
 			?>
