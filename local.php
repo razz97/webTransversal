@@ -10,7 +10,7 @@ if (isset($_SESSION["user"]) && ($_SESSION["tipo"] == 3 || $_SESSION["tipo"] == 
 			<link href="css/usuarios.css" rel="stylesheet" type="text/css"/>
 			<script src="librerias/jquery-3.2.1.min.js" type="text/javascript"></script>
 			<script src="javascript/usuarios.js" type="text/javascript"></script>
-			<title>Stucomusic-Fan</title>
+			<title>Stucomusic-Local</title>
 		</head>
 		<body>
 			<?php
@@ -22,58 +22,6 @@ if (isset($_SESSION["user"]) && ($_SESSION["tipo"] == 3 || $_SESSION["tipo"] == 
 			if (isset($_POST["logOut"])) {
 				$_SESSION["info"] = "Has cerrado sesión, hasta pronto!";
 				header("location: index.php");
-			} if (isset($_POST["aceptar"])) {
-				aceptar_musico($_POST["idmusico"], $_POST["idconcierto"]);
-				rechazar_musicos($_POST["idmusico"], $_POST["idconcierto"]);
-				echo "<p>El musico ha sido aceptado</p>";
-			}
-			if (isset($_POST["optionSubmitEdit"]) && !isset($_POST["backOption"])) {
-				echo "<input id='infoForm'style='visibility:hidden' value='optionSelected' >";
-				echo "<form action='local.php' method='POST' id='formEdit' class='functionality'>";
-				echo "<h2>Editar tus datos</h2>";
-				formulario_editar_usuario();
-				if (isset($_POST["aforo"])) {
-					echo "<p>Aforo <input type='text' name='aforo'></p>";
-				} if (isset($_POST["add"])) {
-					echo "<p>Direccion: <input type='text' name='add' maxlength='50' required></p>";
-				}
-				echo "<input type='submit' name='edit' value='Editar'></form><form action='local.php' method='POST' class='functionality' id='backOption'><input type='submit' name='backOption'  value='Atras'></form>";
-			} if (isset($_POST["edit"])) {
-				$array = array_editar_usuario($_POST);
-				if (isset($_POST["surname"]) && $array) {
-					$datos = "apellido='" . $_POST["surname"] . "'";
-					$array[] = $datos;
-				}
-				if (isset($_POST["add"]) && $array) {
-					$datos = "direccion='" . $_POST["add"] . "'";
-					$array[] = $datos;
-				}
-				if ($array) {
-					if (editar_usuario($array, $_SESSION["user"], "locales")) {
-						$_SESSION["info"] = "Cambios modificados correctamente";
-						if (isset($_POST["user"])) {
-							$_SESSION["user"] = $_POST["user"];
-						}
-						header("location: local.php");
-					} else {
-						echo "ha habido un error";
-					}
-				} else {
-					echo "No se ha modificado ningun dato";
-				}
-			} if (isset($_POST["submitCreateConcert"])) {
-				//!!Esto se tiene que cambiar, solo funciona en chrome!!
-				$name = $_POST["nombre"];
-				$date = explode("T", $_POST["fecha"]);
-				$genre = $_POST["genero"];
-				$cashMoney = $_POST["propuesta"];
-				$result = alta_concierto($date[0] . " " . $date[1] . ":00", $genre, $cashMoney, $name, $userData["IDUSUARIO"]);
-				if ($result) {
-					echo "<div>Concierto creado con éxito</div>";
-				}
-			} if (isset($_POST["submitDeleteConcert"])) {
-				$result = eliminar_concierto($_POST["selectDeleteConcert"]);
-				echo "<div>Concierto eliminado con éxito</div>";
 			}
 			?>
 			<div id="backgroundHeader"></div>
@@ -114,6 +62,43 @@ if (isset($_SESSION["user"]) && ($_SESSION["tipo"] == 3 || $_SESSION["tipo"] == 
 					<input type="submit" name="optionSubmitEdit" id="optionSubmitEdit" value="Seleccionar">
 				</form>
 			</div>
+			<?php
+			if (isset($_POST["optionSubmitEdit"]) && !isset($_POST["backOption"])) {
+				echo "<input id='infoForm'style='visibility:hidden' value='optionSelected' >";
+				echo "<form action='local.php' method='POST' id='formEdit' class='functionality'>";
+				echo "<h2>Editar tus datos</h2>";
+				formulario_editar_usuario();
+				if (isset($_POST["aforo"])) {
+					echo "<p>Aforo <input type='text' name='aforo'></p>";
+				} if (isset($_POST["add"])) {
+					echo "<p>Direccion: <input type='text' name='add' maxlength='50' required></p>";
+				}
+				echo "<input type='submit' name='edit' value='Editar'></form><form action='local.php' method='POST' class='functionality' id='backOption'><input type='submit' name='backOption'  value='Atras'></form>";
+			} if (isset($_POST["edit"])) {
+				$array = array_editar_usuario($_POST);
+				if (isset($_POST["surname"]) && $array) {
+					$datos = "apellido='" . $_POST["surname"] . "'";
+					$array[] = $datos;
+				}
+				if (isset($_POST["add"]) && $array) {
+					$datos = "direccion='" . $_POST["add"] . "'";
+					$array[] = $datos;
+				}
+				if ($array) {
+					if (editar_usuario($array, $_SESSION["user"], "locales")) {
+						$_SESSION["info"] = "Cambios modificados correctamente";
+						if (isset($_POST["user"])) {
+							$_SESSION["user"] = $_POST["user"];
+						}
+						header("location: local.php");
+					} else {
+						echo "<p class='info'>Ha habido un error, no se ha modificado nada</p>";
+					}
+				} else {
+					echo "<p class='info'>No se ha modificado ningun dato</p>";
+				}
+			}
+			?>
 			<div id="createConcert" class="functionality">
 				<h2>Crea un concierto</h2>
 				<form action="local.php" method="POST">
@@ -133,8 +118,21 @@ if (isset($_SESSION["user"]) && ($_SESSION["tipo"] == 3 || $_SESSION["tipo"] == 
 							<td><input type="number" name="propuesta"/></td></tr>
 					</table><br>
 					<input  type="submit" name="submitCreateConcert" value="Crear" >
-				</form>    
+				</form> 
 			</div>
+			<?php
+			if (isset($_POST["submitCreateConcert"])) {
+				//!!Esto se tiene que cambiar, solo funciona en chrome!!
+				$name = $_POST["nombre"];
+				$date = explode("T", $_POST["fecha"]);
+				$genre = $_POST["genero"];
+				$cashMoney = $_POST["propuesta"];
+				$result = alta_concierto($date[0] . " " . $date[1] . ":00", $genre, $cashMoney, $name, $userData["IDUSUARIO"]);
+				if ($result) {
+					echo "<p class='info'>Concierto creado con éxito</p>";
+				}
+			}
+			?>
 			<div id="deleteConcert" class="functionality">
 				<h2> Que concierto quieres eliminar?</h2>
 				<form  method='POST'>
@@ -149,6 +147,12 @@ if (isset($_SESSION["user"]) && ($_SESSION["tipo"] == 3 || $_SESSION["tipo"] == 
 					<input type ='submit' name ='submitDeleteConcert' value='Eliminar'/>
 				</form>
 			</div>
+			<?php
+			if (isset($_POST["submitDeleteConcert"])) {
+				$result = eliminar_concierto($_POST["selectDeleteConcert"]);
+				echo "<p class='info'>Concierto eliminado con éxito</p>";
+			}
+			?>
 			<div id="infoConcert" class="functionality">
 				<?php
 				$asignados = seleccionar_conciertos_local($userData["IDUSUARIO"]);
@@ -162,10 +166,13 @@ if (isset($_SESSION["user"]) && ($_SESSION["tipo"] == 3 || $_SESSION["tipo"] == 
 				<h2>Candidaturas a conciertos</h2>
 				<?php
 				$candidaturas = seleccionar_peticiones_local($userData["IDUSUARIO"]);
-				echo "<table class='tablesInfoConcert'> <tr><th>Concierto</th><th>Musico</th><th>Genero</th><th>Fecha</th><th>Confirmar</th></tr>$candidaturas</table>";
+				echo "<table class='tablesInfoConcert'> <tr><th>Concierto</th><th>Musico</th><th>Genero</th><th>Fecha</th><th>Confirmar</th></tr>$candidaturas</table></div> ";
+				if (isset($_POST["aceptar"])) {
+					aceptar_musico($_POST["idmusico"], $_POST["idconcierto"]);
+					rechazar_musicos($_POST["idmusico"], $_POST["idconcierto"]);
+					echo "<p class='info'>El musico ha sido aceptado</p>";
+				}
 				?>
-			</div>  
-		</div>
 		<div id="backgroundAds"></div>
 		<img src="img/anuncios/albondigas.gif" alt="" id="upperAd"/>
 		<img src="img/anuncios/chicken.gif" alt="" id="lowerAd"/>
