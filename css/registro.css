@@ -1,0 +1,175 @@
+html,body {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+body {
+    background-image: url("../img/fondos/registro.png");
+    background-repeat: repeat-y;
+    background-size: 100%;
+    color:white;
+    font-family: superfuente;
+    text-align: center;
+}
+@font-face {
+    font-family: superfuente;
+    src: url(../font/monof55.woff);
+}
+#contrast {
+	background: rgba(0, 0, 0, 0.2);
+	width:100vw;
+	height:100vh;
+}
+/*Header: logo,titulo y info*/
+.header {
+    display: inline-block;
+    position: absolute;
+    top: 3vh;
+    margin: 0;
+}
+#imgStucomusic {
+    left: 5vw;
+    width: 10vw;
+    height: 10vw;
+}
+#titulo {
+    width: 54vw;
+    height: 17vh;
+    left: 23vw;
+    color: white;
+    font-size: 3vw;
+}
+#info {
+    width: 25vw;
+    height: 17vh;
+    left: 74vw;
+    color: red;
+    font-size: 1.5vw;
+}
+/*Seleccion usuario a registrar: botones y titulo*/
+#optionsRegister {
+    display: inline-block;
+    position: absolute;
+    top: 19vh;
+    left: 0vw;
+    width: 100vw;
+    height: 70vh;
+    font-size: 1.25vw;
+}
+.superBoton {
+    position: absolute;
+    left:40.5vw;
+    width: 18vw;
+    height: 8vh;
+    border-radius: 28px;
+    border: 0;
+    color: #000000;
+    background: #3098ff;
+    text-decoration: none;
+    font-size: 2.5vw;
+    font-family: superfuente;
+}
+.superBoton:hover {  /*TODO: Hacer animacion con javascript*/
+    background: #f4424b;
+}
+#btnFan {
+    top:15vh;
+}
+#btnMusic {
+    top:30vh;
+}
+#btnLocal {
+    top:45vh;
+}
+/*Zona de registros*/
+#register {
+    display: none;
+}
+.specificRegister {
+    display: inline-block;
+    position: absolute;
+    top:18vh;
+    left:55vw;
+    font-size: 1.7vw;
+}
+#registerUser {
+    display: inline-block;
+    position: absolute;
+    top:18vh;
+    left:25vw;
+    font-size: 1.7vw;
+}
+#todoCiudad {
+    visibility: hidden;
+}
+#selectCiudad, #provincia, #genre {
+    font-family: superfuente;
+    font-size: 0.9vw;
+}
+td {
+    font-size: 1.4vw;
+}
+#submitForm {
+    font-size: 2vw;
+    font-family: superfuente;
+    border-radius: 40px;
+    border: 0;
+    color: #000000;
+    background: #3098ff;
+    position:absolute;
+    bottom: 23vh;
+    left: 42vw;
+    width: 15vw;
+    height: 8vh;
+}
+#submitForm:hover {
+    background: #f4424b;
+}
+input {
+    width: 12vw;
+    height: 2vw;
+}
+/*Footer y botons per tornar enrrere*/
+footer {
+	position:fixed;
+	text-align: center;
+	bottom:0;
+	width:100vw;
+}
+a {
+	display: inline-block;
+}
+.logo {
+	width:3.5vw;
+	height: 3.5vw;
+	opacity: 0.3;
+}
+#logoStu:hover, #logoFace:hover, #logoInsta:hover {
+	width: 4vw;
+	height: 4vw;
+	opacity: 1.0;
+}
+.back {
+    position: absolute;
+    font-size: 1.6vw;
+    font-family: superfuente;
+    width: 15vw;
+    height: 6vh;
+    bottom: 13vh;
+    border-radius: 28px;
+    border: 0;
+    color: #000000;
+    background: #3098ff;
+    text-decoration: none;
+}
+.back:hover {
+    background: #f4424b;
+}
+#backIndex {
+    left:41.5vw;
+}
+#backOptions {
+    display: none;
+    left:50vw;
+}

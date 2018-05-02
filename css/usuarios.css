@@ -1,0 +1,314 @@
+html,body {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+body {
+    background-image: url("../img/fondos/fan.png");
+    background-repeat: repeat-y;
+    background-size: 100%;
+    color:white;
+    font-family: superfuente;
+    text-align: center;
+}
+@font-face {
+    font-family: superfuente;
+    src: url(../font/monof55.woff);
+}
+/*Header: Logo + titulo + cerrar sesion*/
+.header {
+    display:inline-block;
+    position: absolute;
+    top: 2vh;
+    margin: 0;
+}
+#imgStucomusic {
+    left: 35vw;
+    top: 1vh;
+    width: 3.5vw;
+    height: 3.5vw;
+}
+#titulo {
+    left: 40vw;
+    font-size: 2.2vw;
+}
+#logOut {
+    right: 2vw;
+    height: 4vh;
+    font-family: superfuente;
+    font-size: 1.2vw;
+}
+#backgroundHeader {
+    position: absolute;
+    display: block;
+    width:100vw;
+    height: 4.5vw;
+    z-index: -1;
+    margin:0;
+    top:0;
+    background-color: rgba(0,0,0,0.7);	
+}
+/*Zona izquierda: datos y menu*/
+.leftSide {
+    position: absolute;
+    display: inline-block;
+    width: 25vw;
+    left:0;
+}
+#backgroundSide {
+    position: absolute;
+    display: inline-block;
+    width:100vw;
+    height:100vh;
+    top: 4.5vw;
+    left:0vw;
+    margin:0;
+    z-index: -2;
+    background-color: rgba(0,0,0,0.4);
+}
+#titleDatos {
+    top: 9vh;
+    font-size: 2vw;
+}
+#tableDatos {
+    top: 19vh;
+    text-align: center;
+    font-size: 1.3vw;
+}
+tbody {
+    display: inline-block;
+    text-align: left;
+}
+.menuButton {
+    position: absolute;
+    display: inline-block;
+    height: 7vh;
+    width: 25vw;
+    left:0;
+    background-color: rgb(150, 15, 15);
+    color: black;
+    font-family: superfuente;
+    font-size: 1.7vw;
+    border:solid 0px;
+    border-radius: 45px 0px 0px 45px;
+}
+.menuButton:hover {
+    background-color: rgba(255,255,255,0.6);
+}
+
+#showOptionsEdit {
+    background-color: rgba(255,255,255,0.6);
+    top:50vh;
+}
+/*Botones fan*/
+#showVoteMusic {
+    top:60vh;
+}
+#showVoteConcierto {
+    top:70vh;
+}
+/*Botones local*/
+#showCreateConcert {
+	top:60vh;
+}
+#showDeleteConcert {
+	top: 70vh;
+}
+#showInfoConcert {
+	top: 80vh;
+}
+/*Botones musico*/
+#showRequest {
+	top: 60vh;
+}
+#showRegister {
+	top: 70vh;
+}
+/*Parte central: funcionalidades*/
+#backgroundMain {
+    position: absolute;
+    display: inline-block;
+    height: 100vh;
+    width: 59.35vw;
+    top: 4.5vw;
+    left:25vw;
+    z-index: -1;
+    background-color: rgba(255,255,255,0.6);
+}
+.optionEdit {
+    position: absolute;
+    display: inline-block;
+    width: 40vw;
+    left: 32vw;
+    margin: 0vw;
+}
+#titleOptionEdit {
+    top: 15vh;
+    font-size: 2.3vw;
+}
+#tableOptionEdit {
+    top: 23vh;
+    text-align: center;
+    font-size:1.3vw;
+
+}
+#tableOptionEdit td {
+    padding: 1vw;
+    color: black;
+}
+#optionSubmitEdit {
+    position: absolute;
+    left: 46vw;
+    top:47vh;
+    font-family: superfuente;
+    font-size: 1.3vw;
+    width:10vw;
+    height: 5vh;    
+}
+#optionsEdit {
+    color: black;
+}
+#formEdit {
+	position: absolute;
+	top: 15vh;
+	left: 40vw;
+}
+#backOption {
+	position: absolute;
+	top: 27vh;
+	left: 65vw;
+}
+/*Funcionalidades de fan*/
+#voteMusico {
+	display:none;
+    position: absolute;
+    top: 15vh;
+    left:20vw;
+    width: 60vw;
+    font-size: 1.7vw;
+    color: black;
+}
+#voteConcierto {
+	display:none;
+    position: absolute;
+    top: 15vh;
+    left:20vw;
+    width: 60vw;
+    font-size: 1.7vw;
+    color: black;
+}
+.selectVote {
+    width:20vw;
+    height: 5vh;
+}
+.submitVote {
+    width: 20vw;
+    height: 5vh;
+    margin-top: 3vh;
+}
+/*Funcionalidades de local*/
+#createConcert {
+	display:none;
+    position: absolute;
+	width: 60vw;
+    top: 15vh;
+    left:25vw;
+    font-size: 1.7vw;
+    color: black;
+}
+#deleteConcert {
+	display:none;
+    position: absolute;
+	width: 60vw;
+    top: 15vh;
+    left:25vw;
+    font-size: 1.7vw;
+    color: black;
+}
+#infoConcert {
+	display:none;
+    position: absolute;
+	width: 60vw;
+    top: 10vh;
+    left:25vw;
+    font-size: 2vw;
+    color: black;
+	text-align: center;
+}
+#infoConcert h2 {
+	font-size: 2vw;
+}	
+table {
+	display: inline-block;
+}
+.tablesInfoConcert, .tablesInfoConcert th, .tablesInfoConcert td {
+	font-size: 1.3vw;
+	border: solid 0.5px black;
+	border-collapse: collapse;
+}
+.tablesInfoConcert th {
+	color:black;
+}
+/*Funcionalidades de musico*/
+#register {
+	display:none;
+    position: absolute;
+	width: 60vw;
+    top: 10vh;
+    left:25vw;
+    font-size: 2vw;
+    color: black;
+	text-align: center;
+}
+#register h2, #request h2 {
+	font-size: 2.5vw;
+}
+#request {
+	display:none;
+    position: absolute;
+	width: 60vw;
+    top: 10vh;
+    left:25vw;
+    font-size: 2vw;
+    color: black;
+	text-align: center;
+}
+
+/*Anuncios*/
+#lowerAd {
+    display: inline-block;
+    position: absolute;
+    right:0px;
+    top: 60vh;
+    width: 15vw;
+    height: 15vw
+}
+#upperAd {
+    display: inline-block;
+    position: absolute;
+    right:0px;
+    top: 20vh;
+    width:15vw;
+    height: 15vw;
+}
+/*Footer: logos y links*/
+footer {
+    position:fixed;
+    text-align: center;
+    bottom:0;
+    width:100vw;
+}
+a {
+    display: inline-block;
+}
+.logo {
+    width:3.5vw;
+    height: 3.5vw;
+    opacity: 0.3;
+}
+#logoStu:hover, #logoFace:hover, #logoInsta:hover {
+    width: 4vw;
+    height: 4vw;
+    opacity: 1.0;
+}
