@@ -1,2 +1,2 @@
 # webTransversal
-This repository summarises my web development knowledge using PHP.
+PHP, Javascript, jQuery, HTML and CSS school project
